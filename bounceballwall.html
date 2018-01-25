@@ -4,8 +4,10 @@
 <meta charset="utf-8"/>
 <title>Bounce Ball Wall</title>
 <style>
+
 *{ padding: 0; margin 0; }
-h1{
+h1
+{
 font-family: arial;
 text-align: center;
 font-size: 16px;
@@ -41,7 +43,8 @@ var leftPressed = false;
 var score = 0;
 var audio = new Audio('ding.mp3');
 
-function drawBall() {
+function drawBall() 
+{
     ctx.beginPath();
     ctx.arc(x, y, ballRadius, 0, Math.PI*2);
     ctx.fillStyle = "green";
@@ -49,67 +52,89 @@ function drawBall() {
     ctx.closePath();
 }
 
-function drawScore() {
+function drawScore() 
+{
     ctx.font = "14px Arial";
     ctx.fillStyle = "red";
     ctx.fillText("Score: "+score, 240, 20);
 }
 
-function draw(){
+function draw()
+{
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall();
-drawPaddle();
-drawScore();
-function drawPaddle() {
+    drawPaddle();
+    drawScore();
+
+function drawPaddle() 
+{
     ctx.beginPath();
     ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
     ctx.fillStyle = "lightgreen";
     ctx.fill();
     ctx.closePath();
-if(rightPressed && paddleX < canvas.width-paddleWidth) {
+
+if(rightPressed && paddleX < canvas.width-paddleWidth) 
+{
     paddleX += 7;
 }
-else if(leftPressed && paddleX > 0) {
+else if(leftPressed && paddleX > 0) 
+{
     paddleX -= 7;
 }
 }
-if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+
+if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) 
+{
     dx = -dx;
 }
-if(y + dy < ballRadius) {
+if(y + dy < ballRadius) 
+{
     dy = -dy;
-} else if(y + dy > canvas.height-ballRadius) {
-    if(x > paddleX && x < paddleX + paddleWidth) {
-        dy = -dy;
-	score++;
+} 
+else if(y + dy > canvas.height-ballRadius) 
+{
+
+if(x > paddleX && x < paddleX + paddleWidth) 
+{
+    dy = -dy;
+    score++;
+
 audio.play();
-    }
-    else {
-        alert("Game Over");
-        document.location.reload();
-    }
+}
+    else 
+{
+    alert("Game Over");
+    document.location.reload();
+}
 }
     x += dx;
     y += dy;
 }
 document.addEventListener("keydown", keyDownHandler, false); //controls
 document.addEventListener("keyup", keyUpHandler, false);
-function keyDownHandler(e) {
-    if(e.keyCode == 39) {
-        rightPressed = true;
-    }
-    else if(e.keyCode == 37) {
-        leftPressed = true;
-    }
+function keyDownHandler(e) 
+{
+    if(e.keyCode == 39) 
+{
+    rightPressed = true;
+}
+    else if(e.keyCode == 37) 
+{
+    leftPressed = true;
+}
 }
 
-function keyUpHandler(e) {
-    if(e.keyCode == 39) {
-        rightPressed = false;
-    }
-    else if(e.keyCode == 37) {
-        leftPressed = false;
-    }
+function keyUpHandler(e) 
+{
+    if(e.keyCode == 39) 
+{
+    rightPressed = false;
+}
+    else if(e.keyCode == 37) 
+{
+    leftPressed = false;
+}
 }
 setInterval (draw, 10);
 
