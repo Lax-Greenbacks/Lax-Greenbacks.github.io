@@ -20,7 +20,7 @@ canvas { background: #eee; display: block; margin: 0 auto; }
 </style>
 </head>
 <body>
-<h1>Bounce Ball Wall by: Myles E Barrett
+<h1>Bounce Ball Wall by: Myles D Barrett
 <canvas id="myCanvas" width="480" height="320"></canvas>
 <p> Controls:</p>
 <p> Keyboard: Use the left and right arrow keys to move the paddle.</p>
@@ -136,9 +136,20 @@ function touchHandler(e) //touch controls
 {
     if(e.touches) 
     {
-         paddleX = paddleX < canvas.width-paddleWidth && paddleX > 0;
+	if(paddleX < canvas.width-paddleWidth && paddleX > 0)
+	{
+         paddleX = e.touches[0].pageX - canvas.offsetLeft - paddleWidth / 2;
          output.innerHTML = "Touch:  <br />"+ " x: " + paddleX;
          e.preventDefault();
+	}
+	else if(paddleX < 0)
+	{
+	paddleX+1;
+	}
+	else if(paddleX > canvas.width-paddleWidth)
+	{
+	paddleX-1;
+	}
     }
 }
 setInterval (draw, 10);
