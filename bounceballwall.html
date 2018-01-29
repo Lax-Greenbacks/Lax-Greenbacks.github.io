@@ -22,7 +22,9 @@ canvas { background: #eee; display: block; margin: 0 auto; }
 <body>
 <h1>Bounce Ball Wall by: Myles D Barrett
 <canvas id="myCanvas" width="480" height="320"></canvas>
-<p> Controls: Use the left and right arrow keys to move the bar.</p>
+<p> Controls:</p>
+<p> Keyboard: Use the left and right arrow keys to move the paddle.</p>
+<p> Mobile: Use touch controls to move the paddle.</p>
 <p> Reload the page when you game over.</p>
 
 <script> 
@@ -87,11 +89,11 @@ if(y + dy < ballRadius)
 } 
 else if(y + dy > canvas.height-ballRadius) 
 {
-if(x > paddleX && x < paddleX + paddleWidth) 
+if(x > paddleX-5 && x < paddleX+5 + paddleWidth) //the -5 and +5 are to make the game more "fair"
 {
     dy = -dy;
     score++;
-audio.play();
+    audio.play();
 }
     else 
 {
@@ -102,9 +104,9 @@ audio.play();
     x += dx;
     y += dy;
 }
-document.addEventListener("keydown", keyDownHandler, false); //controls
+document.addEventListener("keydown", keyDownHandler, false); //keyboard controls
 document.addEventListener("keyup", keyUpHandler, false);
-document.addEventListener("touchstart", touchHandler);
+document.addEventListener("touchstart", touchHandler); //these 2 lines are for touch controls
 document.addEventListener("touchmove", touchHandler);
 
 function keyDownHandler(e) 
@@ -134,9 +136,12 @@ function touchHandler(e) //touch controls
 {
     if(e.touches) 
     {
+         if(paddleX < canvas.width-paddleWidth && paddleX > 0)
+         {
          paddleX = e.touches[0].pageX - canvas.offsetLeft - paddleWidth / 2;
          output.innerHTML = "Touch:  <br />"+ " x: " + paddleX;
          e.preventDefault();
+         }
     }
 }
 setInterval (draw, 10);
