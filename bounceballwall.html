@@ -136,12 +136,9 @@ function touchHandler(e) //touch controls
 {
     if(e.touches) 
     {
-         if(paddleX < canvas.width-paddleWidth && paddleX > 0)
-         {
-         paddleX = e.touches[0].pageX - canvas.offsetLeft - paddleWidth / 2;
+         paddleX = paddleX < canvas.width-paddleWidth && paddleX > 0;
          output.innerHTML = "Touch:  <br />"+ " x: " + paddleX;
          e.preventDefault();
-         }
     }
 }
 setInterval (draw, 10);
