@@ -4,7 +4,6 @@
 <meta charset="utf-8"/>
 <title>Bounce Ball Wall</title>
 <style>
-
 *{ padding: 0; margin 0; }
 h1
 {
@@ -25,11 +24,10 @@ canvas { background: #eee; display: block; margin: 0 auto; }
 <canvas id="myCanvas" width="480" height="320"></canvas>
 <p> Controls: Use the left and right arrow keys to move the bar.</p>
 <p> Reload the page when you game over.</p>
-<script> 
 
+<script> 
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
-
 var x = canvas.width/2;
 var y = canvas.height-30;
 var dx = 2;
@@ -51,21 +49,18 @@ function drawBall()
     ctx.fill();
     ctx.closePath();
 }
-
 function drawScore() 
 {
     ctx.font = "14px Arial";
     ctx.fillStyle = "red";
     ctx.fillText("Score: "+score, 240, 20);
 }
-
 function draw()
 {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall();
     drawPaddle();
     drawScore();
-
 function drawPaddle() 
 {
     ctx.beginPath();
@@ -73,7 +68,6 @@ function drawPaddle()
     ctx.fillStyle = "lightgreen";
     ctx.fill();
     ctx.closePath();
-
 if(rightPressed && paddleX < canvas.width-paddleWidth) 
 {
     paddleX += 7;
@@ -83,7 +77,6 @@ else if(leftPressed && paddleX > 0)
     paddleX -= 7;
 }
 }
-
 if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) 
 {
     dx = -dx;
@@ -94,12 +87,10 @@ if(y + dy < ballRadius)
 } 
 else if(y + dy > canvas.height-ballRadius) 
 {
-
 if(x > paddleX && x < paddleX + paddleWidth) 
 {
     dy = -dy;
     score++;
-
 audio.play();
 }
     else 
@@ -113,7 +104,9 @@ audio.play();
 }
 document.addEventListener("keydown", keyDownHandler, false); //controls
 document.addEventListener("keyup", keyUpHandler, false);
-document.addEventListener("mousemove", mouseMoveHandler, false);
+document.addEventListener("touchstart", touchHandler);
+document.addEventListener("touchmove", touchHandler);
+
 function keyDownHandler(e) 
 {
     if(e.keyCode == 39) 
@@ -125,7 +118,6 @@ function keyDownHandler(e)
     leftPressed = true;
 }
 }
-document.addEventListener("mousemove", mouseMoveHandler, false);
 
 function keyUpHandler(e) 
 {
@@ -138,15 +130,17 @@ function keyUpHandler(e)
     leftPressed = false;
 }
 }
-function mouseMoveHandler(e) 
+function touchHandler(e) //touch controls
 {
-    var relativeX = e.clientX - canvas.offsetLeft;
-    if(relativeX > 0 && relativeX < canvas.width) 
+    if(e.touches) 
     {
-        paddleX = relativeX - paddleWidth/2;
+         paddleX = e.touches[0].pageX - canvas.offsetLeft - paddleWidth / 2;
+         output.innerHTML = "Touch:  <br />"+ " x: " + paddleX;
+         e.preventDefault();
     }
 }
 setInterval (draw, 10);
 </script>
 </body>
+</html>
 </html>
