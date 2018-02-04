@@ -50,11 +50,21 @@ function drawBall()
     ctx.fillStyle = "green";
     ctx.fill();
     ctx.closePath();
+if(score > 9)
+{
+ctx.fillStyle = "blue";
+ctx.fill();
+}
+if(score > 19)
+{
+ctx.fillStyle = "red";
+ctx.fill();
+}
 }
 function drawScore() 
 {
     ctx.font = "14px Arial";
-    ctx.fillStyle = "red";
+    ctx.fillStyle = "purple";
     ctx.fillText("Score: "+score, 240, 20);
 }
 function draw()
@@ -70,6 +80,16 @@ function drawPaddle()
     ctx.fillStyle = "lightgreen";
     ctx.fill();
     ctx.closePath();
+if(score > 9)
+{
+ctx.fillStyle = "lightblue";
+ctx.fill();
+}
+if(score > 19)
+{
+ctx.fillStyle = "pink";
+ctx.fill();
+}
 if(rightPressed && paddleX < canvas.width-paddleWidth) 
 {
     paddleX += 7;
