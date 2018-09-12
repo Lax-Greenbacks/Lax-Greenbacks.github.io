@@ -25,7 +25,8 @@ canvas { background: #eee; display: block; margin: 0 auto; }
 <p> Controls:</p>
 <p> Keyboard: Use the left and right arrow keys to move the paddle.</p>
 <p> Mobile: Use touch controls to move the paddle.</p>
-<p> Reload the page when you game over.</p>
+<p>Reload button:</p>
+<p><a href="bounceballwall.html"><img border="0" alt="BBW" src="022-happy.png"width="100" height="100"></a></p>
 
 <script> 
 var canvas = document.getElementById("myCanvas");
@@ -41,31 +42,58 @@ var paddleX = (canvas.width-paddleWidth)/2;
 var rightPressed = false;
 var leftPressed = false;
 var score = 0;
-var audio = new Audio('ding.mp3');
+var audio1 = new Audio('ding.mp3');
+var audio2 = new Audio('loser.mp3');
 
 function drawBall() 
 {
     ctx.beginPath();
     ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-    ctx.fillStyle = "green";
+    ctx.fillStyle = "red";
     ctx.fill();
     ctx.closePath();
+if(score > 1)
+{
+ctx.fillStyle = "red";
+ctx.fill();
+}
+if(score > 4)
+{
+ctx.fillStyle = "#D75B00";
+ctx.fill();
+}
 if(score > 9)
 {
-ctx.fillStyle = "blue";
+ctx.fillStyle = "#D0B528";
+ctx.fill();
+}
+if(score > 14)
+{
+ctx.fillStyle = "green";
 ctx.fill();
 }
 if(score > 19)
 {
-ctx.fillStyle = "red";
+ctx.fillStyle = "blue";
+ctx.fill();
+}
+if(score > 24)
+{
+ctx.fillStyle = "purple";
 ctx.fill();
 }
 }
 function drawScore() 
 {
     ctx.font = "14px Arial";
-    ctx.fillStyle = "purple";
+    ctx.fillStyle = "black";
     ctx.fillText("Score: "+score, 240, 20);
+}
+function drawGO()
+{
+    ctx.font = "28px Arial";
+    ctx.fillStyle = "red";
+    ctx.fillText("GAME OVER", 200, 160);
 }
 function draw()
 {
@@ -77,17 +105,37 @@ function drawPaddle()
 {
     ctx.beginPath();
     ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
-    ctx.fillStyle = "lightgreen";
+    ctx.fillStyle = "pink";
     ctx.fill();
     ctx.closePath();
+if(score > 1)
+{
+ctx.fillStyle = "pink";
+ctx.fill();
+}
+if(score > 4)
+{
+ctx.fillStyle = "orange";
+ctx.fill();
+}
 if(score > 9)
 {
-ctx.fillStyle = "lightblue";
+ctx.fillStyle = "yellow";
+ctx.fill();
+}
+if(score > 14)
+{
+ctx.fillStyle = "lightgreen";
 ctx.fill();
 }
 if(score > 19)
 {
-ctx.fillStyle = "pink";
+ctx.fillStyle = "lightblue";
+ctx.fill();
+}
+if(score > 24)
+{
+ctx.fillStyle = "#AF8EDB";
 ctx.fill();
 }
 if(rightPressed && paddleX < canvas.width-paddleWidth) 
@@ -113,12 +161,14 @@ if(x > paddleX-5 && x < paddleX+5 + paddleWidth) //the -5 and +5 are to make the
 {
     dy = -dy;
     score++;
-    audio.play();
+    audio1.play();
 }
     else 
 {
-    alert("Game Over");
-    document.location.reload();
+    x=-10;
+    y=-10;
+    audio2.play();
+    drawGO();
 }
 }
     x += dx;
