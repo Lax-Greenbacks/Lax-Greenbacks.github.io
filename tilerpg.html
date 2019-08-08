@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <script type="text/javascript">
+//Tile RPG by Myles Barrett
 var ctx = null;
 var gameMap = [
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -45,9 +45,9 @@ function Character()
 	this.tileFrom	= [1,1];
 	this.tileTo		= [1,1];
 	this.timeMoved	= 0;
-	this.dimensions	= [30,30];
-	this.position	= [45,45];
-	this.delayMove	= 500;
+	this.dimensions	= [40,40];//player size
+	this.position	= [40,40];//where in the 
+	this.delayMove	= 500;//move speed
 }
 Character.prototype.placeAt = function(x, y)
 {
@@ -90,6 +90,15 @@ Character.prototype.processMovement = function(t)
 function toIndex(x, y)
 {
 	return((y * mapW) + x);
+}
+
+function readSign()
+{
+        if (e.keyCode = 32) {
+            function sign1() {
+                document.getElementById("myText").value = "This is a sign.";
+            }
+        }
 }
 
 window.onload = function()
@@ -148,16 +157,16 @@ function drawGame() {
         for (var x = 0; x < mapW; ++x) {
             switch (gameMap[((y * mapW) + x)]) {
                 case 0:
-                    ctx.fillStyle = "#808080";//unwalkable tile color
+                    ctx.fillStyle = "#808080";//unwalkable tile color (grey)
                     break;
                 case 3:
-                    ctx.fillStyle = "#000000";//door tile color
+                    ctx.fillStyle = "#000000";//door tile color (black)
                     break;
                 case 4:
-                    ctx.fillStyle = "#FF0000";//sign tile color
+                    ctx.fillStyle = "#FF0000";//sign tile color (red)
                     break;
                 default:
-                    ctx.fillStyle = "#228b22";//walkable tile color
+                    ctx.fillStyle = "#228b22";//walkable tile color (green)
 
             }
 
@@ -179,9 +188,9 @@ function drawGame() {
 
 </head>
 <body>
-<p>
 Tile RPG Demo
-</p>
+<p>
+Text: <input type="text" id="myText" value=""></p>
 <canvas id="game" width="400" height="400"></canvas>
 <style>
 	body{
