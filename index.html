@@ -10,6 +10,7 @@
 			background-color: SeaGreen;
 			text-align: center;
 			color: black;
+			justify-content: center;
 		}
 
 		li {
@@ -50,6 +51,17 @@
 		.circular--square {
 			border-radius: 50%;
 		}
+
+        .bordered {
+            width: 250px;
+            height: 150px;
+            padding: 20px;
+            border: 10px outset SeaGreen;
+            font-family: Georgia, serif;
+            font-size: 18px;
+            text-align: center;
+            color: black;
+        }
 	</style>
 	<link rel="icon" type="image/png" href="redhead.png" />
 </head>
@@ -65,12 +77,14 @@
 </ul>
 <title>Myles D. Barrett</title>
 	<br>
-	<center><img src="me.png" alt="Avatar" style="width:400px" class="circular--square">
+	<center><img src="me.png" alt="Avatar" style="width:450px" class="circular--square">
 	<h1>Myles Barrett</h1>
-	<p style="border:3px; border-style:solid; border-color:SeaGreen; border-radius: 12px;">
-	Hello! I am a computer science student at the University of Utah. 
-	<br>
-	<br>Contact me: mylesdb95@gmail.com
-	</p>
+	<div class="bordered">
+		<br>
+		<br>Hello! I am a computer science student at the University of Utah.
+		<br>
+		<br>Contact me: mylesdb95@gmail.com
+		<br>
+	</div>
 </body>
 </html>
