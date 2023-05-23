@@ -3,46 +3,85 @@
 <head>
 <style>
 ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: SeaGreen;
-	}
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background-color: SeaGreen;
+			text-align: center;
+			color: black;
+			display: flex;
+			justify-content: center;
+		}
 
-	li {
-	float: left;
-	}
+		li {
+			float: left;
+		}
 
-	li a {
-	display: block;
-	color: Snow;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-	}
+			li a {
+				display: block;
+				color: black;
+				text-align: center;
+				padding: 14px 16px;
+				text-decoration: none;
+			}
 
-	li a:hover {
-	background-color: gray;
-	}
-body{
-background-color: #3a3a3a;
-}
-p{
-	color: Snow;
-font-family: Georgia, serif;
-text-align: center;
-background-color: #3a3a3a;
-}
-table, th, td {
-    border: 1px solid SeaGreen;
-	color: Snow;
-font-family: Georgia, serif;
-text-align: center;
-background-color: #3a3a3a;
+				li a:hover {
+					background-color: honeydew;
+				}
 
+		body {
+			background-color: honeydew;
+			font-family: Georgia, serif;
+		}
+
+		h1 {
+			color: black;
+			font-family: Georgia, serif;
+			text-align: center;
+			font-size: 40px;
+			color: black;
+		}
+
+		p {
+			font-family: Georgia, serif;
+			font-size: 20px;
+			text-align: center;
+			color: black;
+		}
+
+		.circular--square {
+			border-radius: 50%;
+		}
+ #melee {
+            font-family: Georgia, serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            #melee td, #melee th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #melee tr:nth-child(even) {
+                background-color: MintCream;
+            }
+
+            #melee tr:hover {
+                background-color: #ddd;
+            }
+
+            #melee th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: SeaGreen;
+                color: black;
+            }
 }
 </style>
+<link rel="icon" type="image/png" href="redhead.png" />
 </head>
 <body>
 <ul>
@@ -51,11 +90,10 @@ background-color: #3a3a3a;
   <li><a href="https://www.flickr.com/people/139442410@N05/">Flickr</a></li>
   <li><a href="melee.html">Melee</a></li>
   <li><a href="speedrun.html">Speedruns</a></li>
-  <li><a href="bounceballwall.html">Bounce Ball Wall (Demo)</a></li>
 </ul>
-<p>*This page is a work in progress. My goal is to display the results of my entire competitive melee career below in as much detail as possible.</p>
+<title>Myles D. Barrett</title>
 <center><img src="meleelogo.png" width="400" height="300">
-<table>
+<table id="melee">
 <center>
   <tr>
     <th>Player</th>
