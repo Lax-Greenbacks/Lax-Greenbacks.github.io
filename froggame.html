@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<!-- Myles Barrett's Frog Game
+	 Created June 23, 2023 -->
+
+<head>
+	<title>Frog Game</title>
+	
+	<style>
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background-color: SeaGreen;
+			text-align: center;
+			color: black;
+			display: flex;
+			justify-content: center;
+		}
+
+		li {
+			float: left;
+		}
+
+			li a {
+				display: block;
+				color: black;
+				text-align: center;
+				padding: 14px 16px;
+				text-decoration: none;
+			}
+
+				li a:hover {
+					background-color: honeydew;
+				}
+
+		body {
+			background-color: honeydew;
+			font-family: Georgia, serif;
+		}
+
+		h1 {
+			color: black;
+			font-family: Georgia, serif;
+			text-align: center;
+			font-size: 40px;
+			color: black;
+		}
+
+		p {
+			font-family: Georgia, serif;
+			font-size: 20px;
+			text-align: center;
+			color: black;
+		}
+
+		.circular--square {
+			border-radius: 50%;
+		}
+
+        .bordered {
+            width: 350px;
+            height: 200px;
+            border: 10px outset SeaGreen;
+            font-family: Georgia, serif;
+            font-size: 18px;
+            text-align: center;
+            color: black;
+        }
+		
+		img {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+		.button-center {
+			text-align: center;
+		}
+	</style>
+</head>
+
+<body>
+	<ul>
+		<li><a href="index.html">Home</a></li>
+		<li><a href="https://www.instagram.com/myles.barrett/">Instagram</a></li>
+		<li><a href="https://www.flickr.com/people/139442410@N05/">Flickr</a></li>
+		<li><a href="melee.html">Melee</a></li>
+		<li><a href="speedrun.html">Speedruns</a></li>
+		<li><a href="froggame.html">Frog Game</a></li>
+	</ul>
+	<p> Timer: <span id="timer">0</span></p>
+	<img id="defaultImg" width="1000" src="startscreen.png" alt="1"/>
+	<p id="p1">To start the game type play</p>
+	<div class="button-center">
+		<input type="text" id="myText" value="Type something...">
+		<button id="button" onclick="sendText()">Enter</button>
+	</div>
+
+	<script>
+		//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		//The following is a dictionary of dictionaries that lists the states and their information
+		
+		var scene_dictionary=
+		{ 
+			"state_startscreen":
+			{ 
+				"png":"startscreen.png",
+				"phrase":"To start the game type play",
+				"actions":
+				{
+					"play":"state_by_river"
+				},
+			},
+			
+			"state_by_river":
+			{
+				"png":"scene1.png",
+				"phrase":"You are a frog",
+				"actions":
+				{
+					"grab fishing rod":"state_by_river_no_fishing_rod",
+					"grab rod":"state_by_river_no_fishing_rod",
+					"grab stick":"state_by_river_no_fishing_rod",
+					"get stick":"state_by_river_no_fishing_rod",
+					"get fishing rod":"state_by_river_no_fishing_rod",
+					"get rod":"state_by_river_no_fishing_rod",
+					"get pole":"state_by_river_no_fishing_rod",
+					"grab pole":"state_by_river_no_fishing_rod",
+					"get fishing pole":"state_by_river_no_fishing_rod",
+					"move rock":"state_by_river_no_rock",
+					"push rock":"state_by_river_no_rock",
+					"move the rock":"state_by_river_no_rock",
+					"push the rock":"state_by_river_no_rock",
+					"pick up rock":"state_by_river_no_rock",
+					"break rock":"state_by_river_no_rock",
+					"move boulder":"state_by_river_no_rock",
+					"push boulder":"state_by_river_no_rock",
+					"swim":"state_drowning",
+					"go swimming":"state_drowning",
+					"swim across":"state_drowning",
+					"swim across river":"state_drowning",
+					"swim to the other side":"state_drowning",
+					"swim in the river":"state_drowning"
+				},
+			},
+			
+			"state_by_river_no_rock":
+			{
+				"png":"scene2.png",
+				"phrase":"You moved the rock",
+				"actions":
+				{
+					"grab fishing rod":"state_by_river_no_fishing_rod_no_rock",
+					"grab rod":"state_by_river_no_fishing_rod_no_rock",
+					"grab stick":"state_by_river_no_fishing_rod_no_rock",
+					"get stick":"state_by_river_no_fishing_rod_no_rock",
+					"get fishing rod":"state_by_river_no_fishing_rod_no_rock",
+					"get rod":"state_by_river_no_fishing_rod_no_rock",
+					"get pole":"state_by_river_no_fishing_rod_no_rock",
+					"grab pole":"state_by_river_no_fishing_rod_no_rock",
+					"get fishing pole":"state_by_river_no_fishing_rod_no_rock",
+					"grab worm":"state_by_river_no_worm",
+					"get worm":"state_by_river_no_worm",
+					"grab worms":"state_by_river_no_worm",
+					"get worms":"state_by_river_no_worm",
+					"pick up worms":"state_by_river_no_worm",
+					"pick up worm":"state_by_river_no_worm",
+					"swim":"state_drowning",
+					"go swimming":"state_drowning",
+					"swim across":"state_drowning",
+					"swim across river":"state_drowning",
+					"swim to the other side":"state_drowning",
+					"swim in the river":"state_drowning"
+				},
+			},
+			
+			"state_by_river_no_worm":
+			{
+				"png":"scene3.png",
+				"phrase":"You got the worm",
+				"actions":
+				{
+					"grab fishing rod":"state_by_river_no_fishing_rod_no_worm",
+					"grab rod":"state_by_river_no_fishing_rod_no_worm",
+					"grab stick":"state_by_river_no_fishing_rod_no_worm",
+					"get stick":"state_by_river_no_fishing_rod_no_worm",
+					"get fishing rod":"state_by_river_no_fishing_rod_no_worm",
+					"get rod":"state_by_river_no_fishing_rod_no_worm",
+					"get pole":"state_by_river_no_fishing_rod_no_worm",
+					"grab pole":"state_by_river_no_fishing_rod_no_worm",
+					"get fishing pole":"state_by_river_no_fishing_rod_no_worm",
+					"swim":"state_drowning",
+					"go swimming":"state_drowning",
+					"swim across":"state_drowning",
+					"swim across river":"state_drowning",
+					"swim to the other side":"state_drowning",
+					"swim in the river":"state_drowning"
+				},
+			},
+			
+			"state_by_river_no_fishing_rod":
+			{
+				"png":"scene4.png",
+				"phrase":"You got the fishing rod",
+				"actions":
+				{
+					"move rock":"state_by_river_no_fishing_rod_no_rock",
+					"push rock":"state_by_river_no_fishing_rod_no_rock",
+					"move the rock":"state_by_river_no_fishing_rod_no_rock",
+					"push the rock":"state_by_river_no_fishing_rod_no_rock",
+					"pick up rock":"state_by_river_no_fishing_rod_no_rock",
+					"break rock":"state_by_river_no_fishing_rod_no_rock",
+					"move boulder":"state_by_river_no_fishing_rod_no_rock",
+					"push boulder":"state_by_river_no_fishing_rod_no_rock",
+					"swim":"state_drowning",
+					"go swimming":"state_drowning",
+					"swim across":"state_drowning",
+					"swim across river":"state_drowning",
+					"swim to the other side":"state_drowning",
+					"swim in the river":"state_drowning"
+				},
+			},
+			
+			"state_by_river_no_fishing_rod_no_rock":
+			{
+				"png":"scene5.png",
+				"phrase":"You got the fishing rod and you moved the rock.",
+				"actions":
+				{
+					"grab worm":"state_by_river_no_fishing_rod_no_worm",
+					"get worm":"state_by_river_no_fishing_rod_no_worm",
+					"grab worms":"state_by_river_no_fishing_rod_no_worm",
+					"get worms":"state_by_river_no_fishing_rod_no_worm",
+					"pick up worms":"state_by_river_no_fishing_rod_no_worm",
+					"pick up worm":"state_by_river_no_fishing_rod_no_worm",
+					"swim":"state_drowning",
+					"go swimming":"state_drowning",
+					"swim across":"state_drowning",
+					"swim across river":"state_drowning",
+					"swim to the other side":"state_drowning",
+					"swim in the river":"state_drowning"
+				},
+			},
+			
+			"state_by_river_no_fishing_rod_no_worm":
+			{
+				"png":"scene6.png",
+				"phrase":"You got the fishing rod and the worm",
+				"actions":
+				{
+					"go fishing":"state_by_river_mitt",
+					"use the fishing rod":"state_by_river_mitt",
+					"fish":"state_by_river_mitt",
+					"use the rod":"state_by_river_mitt",
+					"use the pole":"state_by_river_mitt",
+					"use the fishing pole":"state_by_river_mitt",
+					"start fishing":"state_by_river_mitt",
+					"go fish":"state_by_river_mitt",
+					"swim":"state_drowning",
+					"go swimming":"state_drowning",
+					"swim across":"state_drowning",
+					"swim across river":"state_drowning",
+					"swim to the other side":"state_drowning",
+					"swim in the river":"state_drowning"
+				},
+			},
+			
+			"state_by_river_mitt":
+			{
+				"png":"scene7.png",
+				"phrase":"You fished up an oven mitt",
+				"actions":
+				{
+					"give scorpion oven mitt":"state_by_river_friend",
+					"give the scorpion oven mitt":"state_by_river_friend",
+					"give the scorpion the oven mitt":"state_by_river_friend",
+					"give scorpion the oven mitt":"state_by_river_friend",
+					"give scorpion mitt":"state_by_river_friend",
+					"give scorpion the mitt":"state_by_river_friend",
+					"give the scorpion the mitt":"state_by_river_friend",
+					"give mitt":"state_by_river_friend",
+					"give oven mitt":"state_by_river_friend",
+					"swim":"state_drowning",
+					"go swimming":"state_drowning",
+					"swim across":"state_drowning",
+					"swim across river":"state_drowning",
+					"swim to the other side":"state_drowning",
+					"swim in the river":"state_drowning"
+				},
+			},
+			
+			"state_by_river_friend":
+			{
+				"png":"scene8.png",
+				"phrase":"The scorpion thanks you for this fashionable new gift.",
+				"actions":
+				{
+					"swim":"state_win",
+					"go swimming":"state_win",
+					"swim across":"state_win",
+					"swim across river":"state_win",
+					"swim to the other side":"state_win",
+					"swim in the river":"state_win"
+				},
+			},
+			
+			"state_drowning":
+			{
+				"png":"scene9.png",
+				"phrase":"You try to swim across the river. ''Sorry it's in my nature.'' The scorpion pokes you and you both drown. Type restart to try again.",
+				"actions":
+				{
+					"restart":"state_startscreen"
+				},
+			},
+			
+			"state_timed_out":
+			{
+				"png":"scene10.png",
+				"phrase":"You took too long and the scorpion pokes you. You are now dead. Type restart to try again.",
+				"actions":
+				{
+					"restart":"state_startscreen"
+				},
+			},
+			
+			"state_win":
+			{
+				"png":"winscreen.png",
+				"phrase":"You won the game!!!",
+				"actions":
+				{
+					"restart":"state_startscreen"
+				},
+			},
+			
+
+		};
+		//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		//timer code from this --> https://codepen.io/awkay/pen/ExzGea
+		
+		var timer; 
+		var timeLeft = 100; // seconds
+
+		// What to do when the timer runs out
+		function gameOver() 
+		{
+			// This cancels the setInterval, so the updateTimer stops getting called
+			clearInterval(timer);
+			state = "state_timed_out";
+			document.getElementById('defaultImg').src= scene_dictionary[state]["png"];
+			document.getElementById("p1").innerHTML = scene_dictionary[state]["phrase"];
+		}
+
+		function updateTimer() 
+		{
+			if(state != "state_drowning" && state != "state_win" && state != "state_timed_out" && state != "state_startscreen")
+				timeLeft = timeLeft - 1;
+			
+			if(timeLeft >= 0)
+				document.getElementById("timer").innerHTML = timeLeft;
+			
+			else 
+			{
+				gameOver();
+			}
+		}
+
+		//Called after play is sent during the start screen scene
+		function start() 
+		{
+			timeLeft = 100;
+		
+			// setInterval is a built-in function that will call the given function
+			// every N milliseconds (1 second = 1000 ms)
+			timer = setInterval(updateTimer, 1000);
+  
+			// It will be a whole second before the time changes, so we'll call the update
+			// once ourselves
+			updateTimer();
+		}
+		//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		
+		//Variable that keeps track of the current state
+		var state = "state_startscreen";
+		
+		//This block of code lets the player use the enter key instead of needing to press the button
+		var input = document.getElementById("myText");
+		input.addEventListener("keypress", function(event)
+		{
+			if(event.key === "Enter")
+			{
+				event.preventDefault();
+				document.getElementById("button").click();
+			}
+		});
+		
+		//Method called when button is pressed.
+		function sendText()
+		{
+			var text = document.getElementById("myText").value.toLowerCase();
+			
+			if(state in scene_dictionary)
+			{
+				if(text in scene_dictionary[state]["actions"])
+				{
+					if(text == "play" && state == "state_startscreen")
+						start();
+						
+					if((text == "restart") && state == "state_drowning" || state == "state_win")
+						gameOver();
+					
+					state = scene_dictionary[state]["actions"][text];
+					document.getElementById('defaultImg').src=scene_dictionary[state]["png"];
+					document.getElementById("p1").innerHTML = scene_dictionary[state]["phrase"];
+				}
+				
+				else
+					document.getElementById("p1").innerHTML = "I don't know what this means.";
+			}
+			
+			else
+				document.getElementById("p1").innerHTML = "Scene not found error";
+		};
+	</script>
+	
+</body>
+</html>
