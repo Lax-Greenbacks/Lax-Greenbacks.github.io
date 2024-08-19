@@ -1,173 +1,177 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-ul {
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-			overflow: hidden;
-			background-color: SeaGreen;
-			text-align: center;
-			color: black;
-			display: flex;
-			justify-content: center;
-		}
-
-		li {
-			float: left;
-		}
-
-			li a {
-				display: block;
-				color: black;
-				text-align: center;
-				padding: 14px 16px;
-				text-decoration: none;
-			}
-
-				li a:hover {
-					background-color: honeydew;
-				}
-
-		body {
-			background-color: honeydew;
-			font-family: Georgia, serif;
-		}
-
-		h1 {
-			color: black;
-			font-family: Georgia, serif;
-			text-align: center;
-			font-size: 40px;
-			color: black;
-		}
-
-		p {
-			font-family: Georgia, serif;
-			font-size: 20px;
-			text-align: center;
-			color: black;
-		}
-
-		.circular--square {
-			border-radius: 50%;
-		}
- #sf6 {
-            font-family: Georgia, serif;
-            border-collapse: collapse;
-            width: 100%;
+    <style>
+        /* General styling */
+        body {
+            background-color: #eaf0e3; /* Light green background */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2e4a23; /* Dark green text */
+            margin: 0;
+            padding: 0;
         }
 
-            #sf6 td, #melee th {
-                border: 1px solid #ddd;
-                padding: 8px;
-            }
+        h1 {
+            color: #1e3d22; /* Darker green for headings */
+            font-size: 36px;
+            text-align: center;
+            margin: 40px 0;
+        }
 
-            #sf6 tr:nth-child(even) {
-                background-color: MintCream;
-            }
+        p {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 20px;
+            text-align: center;
+            color: #2e4a23;
+        }
 
-            #sf6 tr:hover {
-                background-color: #ddd;
-            }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #1e3d22; /* Dark green for navbar */
+            text-align: center;
+            color: white;
+            display: flex;
+            justify-content: center;
+        }
 
-            #sf6 th {
-                padding-top: 12px;
-                padding-bottom: 12px;
-                text-align: left;
-                background-color: SeaGreen;
-                color: black;
-            }
-}
-</style>
-<link rel="icon" type="image/png" href="redhead.png" />
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        li a:hover {
+            background-color: #2e4a23; /* Slightly lighter green on hover */
+        }
+
+        .circular--square {
+            border-radius: 50%;
+            border: 5px solid #2e8b57; /* Medium sea green border */
+            margin-top: 20px;
+        }
+
+        .bordered {
+            width: 350px;
+            height: auto;
+            padding: 20px;
+            border: 2px solid #2e8b57; /* Medium sea green border */
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: #2e4a23;
+            margin: 20px auto;
+        }
+
+        /* Table styling */
+        #sf6 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px auto;
+            color: #2e4a23;
+        }
+
+        #sf6 td, #sf6 th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #sf6 tr:nth-child(even) {
+            background-color: #f2f2f2; /* Light grey for even rows */
+        }
+
+        #sf6 tr:hover {
+            background-color: #ddd; /* Darker grey on hover */
+        }
+
+        #sf6 th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #1e3d22; /* Dark green for table headers */
+            color: white;
+        }
+    </style>
+    <link rel="icon" type="image/png" href="redhead.png" />
+    <title>Myles D. Barrett</title>
 </head>
 <body>
 <ul>
-  <li><a href="index.html">Home</a></li>
-  <li><a href="https://www.instagram.com/myles.barrett/">Instagram</a></li>
-  <li><a href="https://www.flickr.com/people/139442410@N05/">Flickr</a></li>
-  <li><a href="melee.html">Melee</a></li>
-  <li><a href="sf6.html">Street Fighter 6</a></li>
-  <li><a href="speedrun.html">Speedruns</a></li>
-  <li><a href="froggame.html">Frog Game</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="https://www.instagram.com/myles.barrett/">Instagram</a></li>
+    <li><a href="https://www.flickr.com/people/139442410@N05/">Flickr</a></li>
+    <li><a href="melee.html">Melee</a></li>
+    <li><a href="sf6.html">Tekken</a></li>
+    <li><a href="speedrun.html">Speedruns</a></li>
+    <li><a href="froggame.html">Frog Game</a></li>
+	<li><a href="projects.html">Projects</a></li>
 </ul>
-<title>Myles D. Barrett</title>
-<center><img src="sf6.png" width="500">
-<table id="sf6">
+
 <center>
-  <tr>
-    <th>Player</th>
-    <th>Character</th>
-    <th>Tournament</th>
-    <th>Date</th>
-<th>Set Count</th>
-  </tr>
-  <tr>
-    <td>IchibanIdiot</td>
-    <td>Ken</td>
-    <td>Driving School #2</td>
-    <td>7/10/23</td>
- <td>2-0</td>
-  </tr>
-  <tr>
-    <td>toomuchabstraction</td>
-    <td>Juri</td>
-    <td>Driving School #2</td>
-    <td>7/10/23</td>
- <td>2-0</td>
-  </tr>
- <tr>
-    <td>Dyltron3030</td>
-    <td>Marisa</td>
-    <td>Driving School #2</td>
-    <td>7/10/23</td>
-<td>2-1</td>
-  </tr>
- <tr>
-    <td>Xyael</td>
-    <td>Manon</td>
-    <td>Driving School #2</td>
-    <td>7/10/23</td>
-<td>0-2</td>
-  </tr>
- <tr>
-    <td>Hibiridi</td>
-    <td>Marisa</td>
-    <td>Driving School #2</td>
-    <td>7/10/23</td>
-<td>0-2</td>
-  </tr>
-  <tr>
-    <td>mechagarfield</td>
-    <td>Manon</td>
-    <td>Driving School #5</td>
-    <td>7/31/23</td>
-<td>2-0</td>
-  </tr>
-  <tr>
-    <td>Creekmo</td>
-    <td>Dhalsim</td>
-    <td>Driving School #5</td>
-    <td>7/31/23</td>
-<td>2-0</td>
-  </tr>
-  <tr>
-    <td>Yuan42</td>
-    <td>Juri</td>
-    <td>Driving School #5</td>
-    <td>7/31/23</td>
-<td>0-2</td>
-  </tr>
-  <tr>
-    <td>kasuganos</td>
-    <td>Cammy</td>
-    <td>Driving School #5</td>
-    <td>7/31/23</td>
-<td>1-2</td>
-  </tr>
-  
- </table>
+    <img src="tekken.png" alt="Tekken 8" style="width:450px" class="circular--square">
+</center>
+
+<table id="sf6">
+    <tr>
+        <th>Player</th>
+        <th>Character</th>
+        <th>Tournament</th>
+        <th>Date</th>
+        <th>Set Count</th>
+    </tr>
+    <tr>
+        <td>Wheezus</td>
+        <td>King</td>
+        <td>SLC Barfights</td>
+        <td>6/19/24</td>
+        <td>1-2</td>
+    </tr>
+    <tr>
+        <td>AcidicYeild</td>
+        <td>Paul</td>
+        <td>SLC Barfights</td>
+        <td>6/19/24</td>
+        <td>1-2</td>
+    </tr>
+    <tr>
+        <td>OneKenBoi</td>
+        <td>Dragunov</td>
+        <td>Evo 2024</td>
+        <td>8/19/24</td>
+        <td>1-2</td>
+    </tr>
+    <tr>
+        <td>WhomeverThisGuy</td>
+        <td>???</td>
+        <td>Evo 2024</td>
+        <td>8/19/24</td>
+        <td>Win</td>
+    </tr>
+    <tr>
+        <td>Berto</td>
+        <td>???</td>
+        <td>Evo 2024</td>
+        <td>8/19/24</td>
+        <td>Win</td>
+    </tr>
+    <tr>
+        <td>KingMedicine</td>
+        <td>Leo</td>
+        <td>Evo 2024</td>
+        <td>8/19/24</td>
+        <td>1-2</td>
+    </tr>
+</table>
 </body>
 </html>

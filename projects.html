@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* General styling */
+        body {
+            background-color: #eaf0e3; /* Light green background */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2e4a23; /* Dark green text */
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #1e3d22; /* Darker green for headings */
+            font-size: 36px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #1e3d22; /* Dark green for navbar */
+            text-align: center;
+            color: white;
+            display: flex;
+            justify-content: center;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        li a:hover {
+            background-color: #2e4a23; /* Slightly lighter green on hover */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .project-link {
+            display: block;
+            margin: 20px 0;
+            font-size: 24px;
+            color: #2e8b57; /* Medium sea green */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #3cb371; /* Lighter green on hover */
+        }
+
+        .project-detail {
+            display: none;
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid #2e8b57; /* Medium sea green border */
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: #2e4a23; /* Dark green text */
+        }
+
+        .project-detail img {
+            display: block;
+            margin: 20px auto;
+            max-width: 60%; /* Resize images to be smaller */
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .video-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 450px; /* Fixed height to maintain aspect ratio */
+            border-radius: 8px;
+        }
+
+        .gif-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .gif-container img {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .label {
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+        }
+    </style>
+    <link rel="icon" type="image/png" href="redhead.png" />
+</head>
+<body>
+<ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="https://www.instagram.com/myles.barrett/">Instagram</a></li>
+    <li><a href="https://www.flickr.com/people/139442410@N05/">Flickr</a></li>
+    <li><a href="melee.html">Melee</a></li>
+    <li><a href="sf6.html">Tekken</a></li>
+    <li><a href="speedrun.html">Speedruns</a></li>
+    <li><a href="froggame.html">Frog Game</a></li>
+    <li><a href="projects.html">Projects</a></li>
+</ul>
+
+<div class="container">
+    <h1>Projects</h1>
+    <a href="#" class="project-link" onclick="toggleDetail('froggame')">Frog Game</a>
+    <a href="#" class="project-link" onclick="toggleDetail('jurassic')">Jurassic Portion</a>
+    
+    <div id="froggame" class="project-detail">
+        <p><strong>Frog Game</strong> - Created June 2023</p>
+        <p>This interactive game lets you play a text-based adventure as a frog. The game has various states and actions that can be performed to progress through the story. Here’s a summary of the gameplay:</p>
+        
+        <p><strong>Initial Screen</strong></p>
+        <img src="startscreen.png" alt="Initial Screen">
+
+        <p>The game starts with a screen prompting you to type "play" to begin. The timer counts down as you make decisions.</p>
+
+        <p><strong>Game Scenes</strong></p>
+        <img src="scene1.png" alt="Scene 1">
+        <img src="scene2.png" alt="Scene 2">
+        <img src="scene3.png" alt="Scene 3">
+        <img src="scene4.png" alt="Scene 4">
+        <img src="scene5.png" alt="Scene 5">
+        <img src="scene6.png" alt="Scene 6">
+        <img src="scene7.png" alt="Scene 7">
+        <img src="scene8.png" alt="Scene 8">
+        <img src="scene9.png" alt="Scene 9">
+        <img src="winscreen.png" alt="Win Screen">
+
+        <p>The game features a timer and various scenes that change based on the player's actions. If you’d like to try the game, visit the [Frog Game page](#) for more details.</p>
+    </div>
+
+    <div id="jurassic" class="project-detail">
+        <p><strong>Jurassic Portion</strong> - August 2024</p>
+        <p>This project fell into my lap when someone I worked with over the summer during a game development class asked me if I wanted to be on their team for this game jam. I was pretty stoked because I’ve never participated in a game jam and I’ve been wanting to do more projects outside of class, especially with others. The jam is <a href="https://itch.io/jam/gmtk-2024" style="color: #2e8b57;">GMTK’s Game Jam 2024</a> hosted on itch.io.</p>
+
+        <p>The team coordinated over Discord and we met in person on campus at 11:00 am which is when the jam started and when the theme was revealed. This video came out which unveiled the theme to be “Built to Scale”.</p>
+
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/iIbTPpfvZBQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <p>Immediately the team started to brainstorm game ideas. I really love this part of the process. You’re trying to convince a group of people to be passionate enough on something you’re coming up with on the fly. I ended up drawing this image:</p>
+
+        <p class="label">Initial Sketch</p>
+        <img src="idea.jpg" alt="Initial idea sketch">
+
+        <p>Which we ended up going forward with and here’s the final version:</p>
+
+        <p class="label">Final Version</p>
+        <img src="finalgame.jpg" alt="Final game screenshot">
+
+        <p>I love seeing these two images next to each other because that quick sketch I made really came to life! I couldn't remember what I was inspired by, until it finally dawned on me. The Mario's Slides mini game from Super Mario 64 DS!</p>
+
+        <div class="gif-container">
+            <img src="example.gif" alt="Pitch Example GIF">
+        </div>
+
+        <p>Our team, now called Dino Developers, had 48 hours to complete the game and we got right to work. We were 3 engineers (including myself) and 4 artists. The game was made in Game Maker which was good for me because I have a decent amount of experience with it already. I don’t wanna explain everything I did, but the mechanic I enjoyed making the most was the achievements in the game. The achievement idea was on our list of things that we don’t need to put in, but that we wanted to add. I REALLY wanted to add it in. So, at 3 am with 8 hours left in the jam and heavy eyes I cranked it out. The achievements added so much to the game and I’m overjoyed that they actually made it in.</p>
+
+        <p>In conclusion I want to shout out to all my teammates who absolutely put in the work. They are all credited on the itch page and within the credits of the game itself. I love working with passionate people who love making games as much as I do. I encourage anyone reading this to please go and try the game on our page on itch: <a href="https://numa3.itch.io/jurassic-portions" style="color: #2e8b57;">Jurassic Portions</a></p>
+    </div>
+</div>
+
+<script>
+    function toggleDetail(id) {
+        var details = document.querySelectorAll('.project-detail');
+        details.forEach(function(detail) {
+            detail.style.display = 'none';
+        });
+        var detailToShow = document.getElementById(id);
+        if (detailToShow.style.display === 'none' || detailToShow.style.display === '') {
+            detailToShow.style.display = 'block';
+        } else {
+            detailToShow.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>
